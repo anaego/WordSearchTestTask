@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class IncorrectInputResponseData
 {
-    
+    public IncorrectInputResponseType ResponseType;
 }

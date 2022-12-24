@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InputView : MonoBehaviour
 {
-    
+    [SerializeField] private TMP_InputField input;
+    [SerializeField] private Button button;
 }

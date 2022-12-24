@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DataConfig", menuName = "ScriptableObjects/DataConfig", order = 1)]
 public class DataConfigScriptableObject : ScriptableObject
 {
-    public string FieldConfigFileName;
+    public string WordGridConfigFileName;
     public string IncorrectInputResponseConfigFileName;
+
+    public int GridSizeRow;
+    public int GridSizeColumn;
 }
