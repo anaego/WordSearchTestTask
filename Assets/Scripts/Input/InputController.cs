@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController
 {
-    private DataConfigScriptableObject DataConfig;
-
-    public InputController(InputView inputView)
+    public InputController(InputView inputView, DataConfigScriptableObject dataConfig)
     {
-        
+        var inputData = LoadInputData(dataConfig.IncorrectInputResponseConfigFileName);
     }
 
-    private IncorrectInputResponseData LoadData()
+    private IncorrectInputResponseData LoadInputData(string incorrectInputResponseConfigFileName)
     {
-        return null;
+        var rawData = Resources.Load<TextAsset>(incorrectInputResponseConfigFileName);
+        if (rawData == null)
+        {
+            Debug.LogWarning("Couldn't load input data");
+            return null;
+        }
+        Enum.TryParse<IncorrectInputResponseType>(rawData.text, out var responseType);
+        return new IncorrectInputResponseData()
+        {
+            ResponseType = responseType
+        };
     }
 }

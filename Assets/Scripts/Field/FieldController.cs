@@ -5,18 +5,14 @@ using UnityEngine;
 
 public class FieldController
 {
-    private DataConfigScriptableObject dataConfig;
-
     public FieldController(FieldView fieldView, DataConfigScriptableObject dataConfig)
     {
-        this.dataConfig = dataConfig;
-        var fieldData = LoadFieldData();
-        Debug.Log("");
+        var fieldData = LoadFieldData(dataConfig.WordGridConfigFileName);
     }
 
-    private FieldData LoadFieldData()
+    private FieldData LoadFieldData(string wordGridConfigFileName)
     {
-        var rawData = Resources.Load<TextAsset>(dataConfig.WordGridConfigFileName);
+        var rawData = Resources.Load<TextAsset>(wordGridConfigFileName);
         if (rawData == null)
         {
             Debug.LogWarning("Couldn't load field data");
