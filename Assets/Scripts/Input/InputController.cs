@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class InputController
 {
-    public InputController(InputView inputView, DataConfigScriptableObject dataConfig)
+    private FieldController fieldController;
+    private IncorrectInputResponseData inputData;
+    private InputView inputView;
+
+    public InputController(InputView inputView, DataConfigScriptableObject dataConfig, FieldController fieldController)
     {
-        var inputData = LoadInputData(dataConfig.IncorrectInputResponseConfigFileName);
+        this.fieldController = fieldController;
+        this.inputView = inputView;
+        inputData = LoadInputData(dataConfig.IncorrectInputResponseConfigFileName);
+        this.inputView.ButtonAction = ProcessInput;
     }
 
     private IncorrectInputResponseData LoadInputData(string incorrectInputResponseConfigFileName)
@@ -23,5 +30,33 @@ public class InputController
         {
             ResponseType = responseType
         };
+    }
+
+    private void ProcessInput(string word)
+    {
+        var coordinates = fieldController.CheckForWord(word);
+        if (coordinates == null)
+        {
+            ProcessIcorrectInput();
+        }
+        else
+        {
+            fieldController.RevealWord(coordinates);
+        }
+    }
+
+    private void ProcessIcorrectInput()
+    {
+        switch (inputData.ResponseType)
+        {
+            case IncorrectInputResponseType.PlaySound:
+                inputView.PlaySound();
+                return;
+            case IncorrectInputResponseType.ShakeField:
+                inputView.ShakeScreen();
+                return;
+            case IncorrectInputResponseType.Default:
+                return;
+        }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d2c6cc6e288384a87bcf9e0464a62c, type: 3}
   m_Name: DataConfig
   m_EditorClassIdentifier: 
-  WordGridConfigFileName: fielddata
+  FieldConfigFileName: fielddata
   IncorrectInputResponseConfigFileName: inputdata
-  GridSizeRow: 10
-  GridSizeColumn: 10
+  FieldSizeRow: 10
+  FieldSizeColumn: 10

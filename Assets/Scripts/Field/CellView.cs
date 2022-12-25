@@ -7,5 +7,12 @@ public class CellView : MonoBehaviour
 {
     [SerializeField] private TMP_Text letterText;
 
-    public bool IsOpened { set => letterText.gameObject.SetActive(value); }
+    public string Text 
+    { 
+        set => letterText.text = value; 
+    }
+    public bool IsOpened 
+    { 
+        set => letterText.gameObject.SetActive(value); 
+    }
 }

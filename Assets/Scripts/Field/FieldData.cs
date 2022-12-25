@@ -6,5 +6,5 @@ using UnityEngine;
 [Serializable]
 public class FieldData
 {
-    public char[][] WordGrid;
+    public char[][] WordField;
 }
