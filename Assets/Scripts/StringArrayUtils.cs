@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public static class StringArrayUtils
 {
@@ -36,15 +38,24 @@ public static class StringArrayUtils
     {
         List<string> columns = new List<string>();
         var arrayOfColumns = new List<List<char>>();
+        var arrayOftasks = new List<Task>();
         for (int c = 0; c < columnSize; c++)
         {
             var column = new List<char>();
             arrayOfColumns.Add(column);
-            for (int r = 0; r < rowSize; r++)
+            var newColumn = column;
+            var currentColumnIndex = c;
+            var internalWordField = wordField;
+            arrayOftasks.Add(Task.Run(() =>
             {
-                column.Add(wordField[r][c]);
-            }
+                for (int r = 0; r < rowSize; r++)
+                {
+                    newColumn.Add(internalWordField[r][currentColumnIndex]);
+                }
+            }));
         }
+        var alltasks = Task.WhenAll(arrayOftasks);
+        alltasks.Wait();
         return StringArrayUtils.GetFieldRows(arrayOfColumns.Select(charList => charList.ToArray()).ToArray());
     }
 }
