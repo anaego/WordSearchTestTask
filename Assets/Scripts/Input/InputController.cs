@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController
@@ -34,6 +32,7 @@ public class InputController
 
     private void ProcessInput(string word)
     {
+        word = word.Replace(" ", String.Empty);
         var coordinates = fieldController.CheckForWord(word);
         if (coordinates == null)
         {

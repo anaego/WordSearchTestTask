@@ -1,9 +1,8 @@
 using System;
-using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class InputView : MonoBehaviour
 {
@@ -13,9 +12,11 @@ public class InputView : MonoBehaviour
     [SerializeField] private RectTransform shakeAnimationTarget;
     [SerializeField] private float shakeDuration = 1;
 
-    public Action<string> ButtonAction 
-    { 
-        set => button.onClick.AddListener(() => value.Invoke(input.text)); 
+    private Tween shakeTween;
+
+    public Action<string> ButtonAction
+    {
+        set => button.onClick.AddListener(() => value.Invoke(input.text));
     }
 
     internal void PlaySound()
@@ -25,6 +26,14 @@ public class InputView : MonoBehaviour
 
     internal void ShakeScreen()
     {
-        shakeAnimationTarget.DOShakeRotation(shakeDuration);
+        if (shakeTween == null || !shakeTween.IsActive())
+        {
+            shakeTween = shakeAnimationTarget.DOShakeRotation(shakeDuration);
+        }
+        else
+        {
+            shakeTween.Rewind();
+            shakeTween.Play();
+        }
     }
 }

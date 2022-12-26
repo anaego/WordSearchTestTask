@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -43,8 +42,8 @@ public class FieldController
     private string[] fieldRows;
     private string[] fieldColumns;
 
-    public string[] FieldRows 
-    { 
+    public string[] FieldRows
+    {
         get
         {
             if (fieldRows == null)
@@ -97,7 +96,7 @@ public class FieldController
             }
             return null;
         }
-        else 
+        else
         {
             foreach (var coordinate in AllCoordinatesOf(FieldColumns, word))
             {
@@ -135,8 +134,8 @@ public class FieldController
         for (int c = columnStartIndex; c < columnEndIndex; c++)
         {
             if (modifiedFieldData.WordField[rowIndex, c].IsOpened)
-            { 
-                return true; 
+            {
+                return true;
             }
         }
         return false;

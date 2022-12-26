@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FieldView : MonoBehaviour
@@ -18,7 +15,7 @@ public class FieldView : MonoBehaviour
             for (int j = 0; j < columns; j++)
             {
                 var cell = Instantiate(cellPrefab, cellParent.transform);
-                field[i,j] = cell;
+                field[i, j] = cell;
             }
         }
     }
@@ -29,7 +26,7 @@ public class FieldView : MonoBehaviour
         {
             for (int j = 0; j < field.GetLength(1); j++)
             {
-                field[i,j].Text = data[i][j].ToString();
+                field[i, j].Text = data[i][j].ToString();
             }
         }
     }
@@ -48,7 +45,6 @@ public class FieldView : MonoBehaviour
             for (int i = startRow; i < endRow; i++)
             {
                 field[i, startColmn].IsOpened = true;
-
             }
         }
     }
