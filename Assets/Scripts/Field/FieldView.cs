@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class FieldView : MonoBehaviour
@@ -33,19 +34,21 @@ public class FieldView : MonoBehaviour
 
     public void RevealWord(int startRow, int startColmn, int endRow, int endColumn)
     {
+        Sequence sequence = DOTween.Sequence();
         if (startRow == endRow)
         {
             for (int j = startColmn; j < endColumn; j++)
             {
-                field[startRow, j].IsOpened = true;
+                sequence.Append(field[startRow, j].GetRevealTween());
             }
         }
         if (startColmn == endColumn)
         {
             for (int i = startRow; i < endRow; i++)
             {
-                field[i, startColmn].IsOpened = true;
+                sequence.Append(field[i, startColmn].GetRevealTween());
             }
         }
+        sequence.Play();
     }
 }

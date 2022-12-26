@@ -5,19 +5,15 @@ using UnityEngine;
 public class CellView : MonoBehaviour
 {
     [SerializeField] private TMP_Text letterText;
-    [SerializeField] private float letterFadeInDuration = 0.5f;
+    [SerializeField] private float letterFadeInDuration = 0.25f;
 
     public string Text
     {
         set => letterText.text = value;
     }
-    public bool IsOpened
+
+    public Tween GetRevealTween()
     {
-        set
-        {
-            letterText.alpha = 0;
-            letterText.gameObject.SetActive(value);
-            letterText.DOFade(1, letterFadeInDuration);
-        }
+        return letterText.DOFade(1, letterFadeInDuration);
     }
 }

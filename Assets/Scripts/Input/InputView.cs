@@ -19,12 +19,12 @@ public class InputView : MonoBehaviour
         set => button.onClick.AddListener(() => value.Invoke(input.text));
     }
 
-    internal void PlaySound()
+    public void PlaySound()
     {
         audioSource.Play();
     }
 
-    internal void ShakeScreen()
+    public void ShakeScreen()
     {
         if (shakeTween == null || !shakeTween.IsActive())
         {
