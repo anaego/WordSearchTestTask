@@ -108,11 +108,6 @@ public class FieldController
                 }
             }
             return null;
-            //var column = FieldColumns.First(column => column.Contains(word));
-            //var columnIndex = Array.IndexOf(FieldColumns, column);
-            //var rowStartIndex = column.IndexOf(word);
-            //var rowEndIndex = rowStartIndex + word.Length;
-            //return new Tuple<int, int, int, int>(rowStartIndex, columnIndex, rowEndIndex, columnIndex);
         }
     }
 
